@@ -54,7 +54,7 @@ def play_roulette():
                 roulette_players.append({"name": roulette_name, "score": wins, "difficulty": difficulty_name})
                 input("Press enter to return to the menu. ")
                 break
-
+#make sure that unexpected cases for play again y/n are fixed.
 
 def play_number():
     guessed = []
@@ -80,8 +80,8 @@ def play_number():
             print(f"Game over! You ran out of guesses. The number was {number}.")
             print(f"Final score: {current_wins}")
             print("Your guesses:")
-            for number in guessed:
-                print(number)
+            for numbers in guessed:
+                print(numbers)
             number_players.append({"name": number_name, "score": current_wins})
             guessed = []
             number_again = input("Play again? (y/n): ").lower()
@@ -96,20 +96,24 @@ def play_number():
         guess = input("Guess: ")
         try:
             guess = int(guess)
+            if guess < 1 or guess > 10:
+                print("Please guess a number between 1 and 10.")
+                input("Press enter to continue. ")
+                continue
+            if guess in guessed:
+                print("Number already guessed.")
+                input("Press enter to continue: ")
+                continue
             guessed.append(guess)
+            guesses += 1
         except ValueError:
             print("Invalid input! Please enter a number.")
             input("Press enter to continue. ")
-            continue
-        if guess in guessed:
-            print("Number already guessed.")
-            input("Press enter to continue: ")
             continue
         if guess < 1 or guess > 10:
             print("Please guess a number between 1 and 10.")
             input("Press enter to continue. ")
             continue
-        guesses += 1
         if guess == number:
             print("Correct!")
             print(f"The number was {number}")
@@ -119,6 +123,7 @@ def play_number():
             while number_again not in ("y", "n"):
                 number_again = input("Invalid input. Play again (y/n): ").lower()
             if number_again == "y":
+                guessed = []
                 guesses = 0
                 number = random.randint(1, 10)
             else:
@@ -203,7 +208,7 @@ def all_scores():
             print("\nNo recorded scores yet for Number Guesser, go play!")
         if cyoa_players:
             print("== Choose Your Own Adventure Scores: ==")
-            sorted_number = sorted(cyoa_players, key=lambda x: x["score"], reverse=True)
+            sorted_cyoa = sorted(cyoa_players, key=lambda x: x["score"], reverse=True)
             for name in sorted_cyoa:
                 print(f"Name: {name['name']} - Score: {name['score']}")
         if not cyoa_players:
