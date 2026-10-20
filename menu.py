@@ -26,7 +26,11 @@ def play_roulette():
     print("\nSelect difficulty:")
     for key, (name, chambers) in roulette_difficulties.items():
         print(f"{key}. {name} ({chambers} chambers)")
-    difficulty = input("Choose difficulty (1-3): ")
+    print("\nSurvival rates:")
+    print("Easy: High")
+    print("Normal: Enough")
+    print("Hard: Low")
+    difficulty = input("\nChoose difficulty (1-3): ")
     while difficulty not in roulette_difficulties:
         difficulty = input("Invalid choice. Choose difficulty (1-3): ")
     difficulty_name, chamber_count = roulette_difficulties[difficulty]
@@ -54,41 +58,55 @@ def play_roulette():
                 roulette_players.append({"name": roulette_name, "score": wins, "difficulty": difficulty_name})
                 input("Press enter to return to the menu. ")
                 break
-#make sure that unexpected cases for play again y/n are fixed.
+
 
 def play_number():
     guessed = []
     """Play number game."""
+    number_difficulties = {
+        "1": ("Easy", 5),
+        "2": ("Normal", 10),
+    }
     print("Welcome to a number guessing game!")
-    print("Try to guess my number between 1 and 10.")
+    print("Select difficulty: ")
+    for keys, (name, nambers) in number_difficulties.items():
+        print(f"{keys}. {name} ({nambers} total numbers)")
+    number_difficulty = input("\nChoose difficulty (1-2): ")
+    while number_difficulty not in number_difficulties:
+        number_difficulty = input("Invalid choice. Choose difficulty (1-2): ")
+    number_difficulty_name, total_numbers = number_difficulties[number_difficulty]
+    print(f"\nDifficulty set to {number_difficulty_name}!")
+    input("Press enter to continue: ")
+    clear_screen()
+    print(f"Try to guess my number between 1 and {total_numbers}.")
     print("You have three guesses.")
     print("At the end of the round your score will be increase by 1 if you guess correctly.")
     input("Press enter to continue. ")
     clear_screen()
     guesses = 0
-    number = random.randint(1, 10)
+    number = random.randint(1, total_numbers)
     number_name = input("Please enter your name: ")
     current_wins = 0
     while True:
         clear_screen()
-        print("Guess my number from 1-10")
+        print(f"Guess my number from 1-{total_numbers}")
         if guessed:
             print("Guessed numbers:")
-            for number in guessed:
-                print(number)
+            for numbers in guessed:
+                print(numbers)
         if guesses >= 3:
             print(f"Game over! You ran out of guesses. The number was {number}.")
             print(f"Final score: {current_wins}")
             print("Your guesses:")
             for numbers in guessed:
                 print(numbers)
-            number_players.append({"name": number_name, "score": current_wins})
+            number_players.append({"name": number_name, "score": current_wins, "difficulty": number_difficulty_name})
             guessed = []
             number_again = input("Play again? (y/n): ").lower()
             current_wins = 0
             if number_again == "y":
                 guesses = 0
-                number = random.randint(1, 10)
+                number = random.randint(1, total_numbers)
                 continue
             else:
                 break
@@ -96,8 +114,8 @@ def play_number():
         guess = input("Guess: ")
         try:
             guess = int(guess)
-            if guess < 1 or guess > 10:
-                print("Please guess a number between 1 and 10.")
+            if guess < 1 or guess > total_numbers:
+                print(f"Please guess a number between 1 and {total_numbers}.")
                 input("Press enter to continue. ")
                 continue
             if guess in guessed:
@@ -110,8 +128,8 @@ def play_number():
             print("Invalid input! Please enter a number.")
             input("Press enter to continue. ")
             continue
-        if guess < 1 or guess > 10:
-            print("Please guess a number between 1 and 10.")
+        if guess < 1 or guess > total_numbers:
+            print(f"Please guess a number between 1 and {total_numbers}.")
             input("Press enter to continue. ")
             continue
         if guess == number:
@@ -125,11 +143,11 @@ def play_number():
             if number_again == "y":
                 guessed = []
                 guesses = 0
-                number = random.randint(1, 10)
+                number = random.randint(1, total_numbers)
             else:
                 input("Press enter to return to the menu.")
                 print(f"Final score: {current_wins}")
-                number_players.append({"name": number_name, "score": current_wins})
+                number_players.append({"name": number_name, "score": current_wins, "difficulty": number_difficulty_name})
                 current_wins = 0
                 guessed = []
                 break
@@ -203,7 +221,7 @@ def all_scores():
             print("===== Number Guesser High Scores: =====")
             sorted_number = sorted(number_players, key=lambda x: x["score"], reverse=True)
             for name in sorted_number:
-                print(f"Name: {name['name']} - Score: {name['score']}")
+                print(f"Name: {name['name']} - Score: {name['score']} - Difficulty: {name['difficulty']}")
         if not number_players:
             print("\nNo recorded scores yet for Number Guesser, go play!")
         if cyoa_players:
