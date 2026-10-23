@@ -14,4 +14,4 @@ Games include:
 
  From the first page of each game menu, you have the option to return to the menu. (Excluding CYOA fro now)
 
- (Russian) Roulette, and Number guesser are finished, while CYOA is a semi viable product (for now)
+ (Russian) Roulette, and Number guesser are finished, while CYOA is a mostly viable product (for now)
