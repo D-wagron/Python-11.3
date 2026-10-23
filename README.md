@@ -14,4 +14,6 @@ Games include:
 
  From the first page of each game menu, you have the option to return to the menu.
 
- All gamea are finished
+ All games are finished
+
+ [Try this project here](https://github.com)](https://codespaces.new)
