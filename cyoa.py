@@ -24,7 +24,8 @@ def cyoa_play_again():
 def play_cyoa():
     """Play CYOA game."""
     global cyoa_score
-    global cyos_name
+    global cyoa_name
+    cyoa_score = 0
     cyoa_name = input("Please enter your name: ")
     clear_screen()
     print("You have been tasked with recovering the golden idol.")
@@ -57,7 +58,7 @@ def play_cyoa():
         pathway_six = input("Enter input here: ").lower() # Third option
         while pathway_six not in ("i", "l"):
             print("Invalid input. Try again")
-            third = input("Enter input here: ").lower()
+            pathway_six = input("Enter input here: ").lower()
         if pathway_six == "i":
             clear_screen()  
             cyoa_score += 1
@@ -179,7 +180,7 @@ def play_cyoa_II():
     input("Press enter to continue: ")
     clear_screen()
     print("The end of the hall splits off into two rooms.")
-    print("The one on the left holds rows of weapons and s few suits of armour.")
+    print("The one on the left holds rows of weapons and a few suits of armour.")
     print("The one on the right beckons to you with a faint blue glow.")
     print("'L' for left, 'R' for right")
     pathway_eight = input("Enter input here: ").lower()
@@ -200,7 +201,11 @@ def play_cyoa_II():
             print("You step closer to the armour, fail to notice the axe poised high.")
             print("A mouse pokes out the visor, captivating you.")
             print("The blade swings down, and ...")
-            print("'That's it for now.'")
+            print("'That's it for you.'")
+            print("'No more life.'")
+            print("A different voice that time.")
+            input("Press enter to continue: ")
+            clear_screen()
             print(f"Final score: {cyoa_score}")
             cyoa_players.append({"name": cyoa_name, "score": cyoa_score})
             cyoa_play_again()
@@ -212,11 +217,11 @@ def play_cyoa_II():
             print("At the end of the room is a solid oak door, that looks almost surreal, but it fits right in.")
             print("You feel compelled to open the door.")
             print("Do you (y/n)?")
-            final_door = input("Enter input here: ")
+            final_door = input("Enter input here: ").lower()
             while final_door not in ("y", "n"):
                 print("Invalid input. Try again.")
-                final_door = input("Enter input here: ")
-            if input == "n":
+                final_door = input("Enter input here: ").lower()
+            if final_door == "n":
                 print("You don't know what lies beyond that door.")
                 print("But, you know you can't turn back now.")
                 print("You push on further, and out the door.")
@@ -235,11 +240,11 @@ def play_cyoa_II():
         print("At the end of the room is a solid oak door, that looks almost surreal, but it fits right in.")
         print("You feel compelled to open the door.")
         print("Do you (y/n)?")
-        final_door = input("Enter input here: ")
+        final_door = input("Enter input here: ").lower()
         while final_door not in ("y", "n"):
             print("Invalid input. Try again.")
-            final_door = input("Enter input here: ")
-        if input == "n":
+            final_door = input("Enter input here: ").lower()
+        if final_door == "n":
             print("You don't know what lies beyond that door.")
             print("But, you know you can't turn back now.")
             print("You push on further, and out the door.")
@@ -274,21 +279,49 @@ def play_cyoa_III():
     print("The lava looks suspiciously..")
     print("...")
     print("hungry?")
+    print("Taunt lava (y/n)?")
+    taunt = input("Enter input here: ").lower()
+    while taunt not in ("y", "n"):
+        print("Invalid input. Try again.")
+        taunt = input("Enter input here: ").lower()
+    if taunt == "y":
+        clear_screen()
+        print("You tease the lava by holding the idol above your head.")
+        print("Idol is very much the wrong word to be using, but anyway.")
+        print("A burble of lava erupts from underneath you, engulfing you and the idol in flames.")
+        print("Before you feel any pain your vision cuts out and you hear: ")
+        print("'\x1B[3mNearly\x1B[23m'")
+        print("'Send them in again.'")
+        print(f"Final score: {cyoa_score}")
+        cyoa_players.append({"name": cyoa_name, "score": cyoa_score})
+        cyoa_play_again()
+    else:
+        print("You return the idol to the marble pilar.")
+        print("Damn that thing is heavy.")
+        print("You might have an opportunity to escape now.")
+        print("You sprint towards the most climbable section of the wall, and try reach out...")
+        input("Press enter to continue: ")
+        clear_screen()
+        print("An echo from below.")
+        print("'War never satisfied me, only prologed my hunger.'")
+        print("Thank you mortal.")
+        input("Press enter to continue: ")
+        clear_screen()
+        print("You won!")
+        print("But did you?")
+        print("You may have survived, but you failed to retreive the idol.")
+        print("You sit down in the rain wondering if yor choices were truly yours to make.")
+        print("'Well done, test subject, you passed.'")
+        print("Your eyes open wide, you look around before you are quickly sedated.")
+        print("'\x1B[3mWas it you who really chose?\x1B[23m'") #italics work for terinal, no idea for anything else
+        print("\n ")
+        cyoa_score += 5 # winning bonus
+        cyoa_players.append({"name": cyoa_name, "score": cyoa_score})
+        print(f"Final score: {cyoa_score}")
+        cyoa_play_again()
 
-    #normal ending
-    # print("'\x1B[3mNearly\x1B[23m'")
-    # print("'Send them in again.'")
 
-    # true ending
-    # print("You won!")
-    # print("But did you?")
-    # print("You may have survived, but you failed to retreive the idol.")
-    # print("You sit down in the rain wondering if yor choices were truly yours to make.")
-    # print("'Well done, test subject, you passed.'")
-    # print("Your eyes open wide, you look around before you are quickly sedated."
-    # print("'\x1B[3mWas it you who really chose?\x1B[23m'") #italics work for terinal, no idea for anything else
+play_cyoa()
 
-
-play_cyoa_II()
 
 # the puter has been diagnosed, unfortunatley it is terminal :
