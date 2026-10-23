@@ -31,11 +31,11 @@ def play_roulette():
     print("Easy: High")
     print("Normal: Enough")
     print("Hard: Low")
-    print("\nChoose difficulty (1-3):")
+    print("\nChoose difficulty (1-4):")
     print("Or enter 4 to quit")
     difficulty = input("\nEnter input here: ")
     while difficulty not in roulette_difficulties:
-        difficulty = input("Invalid choice. Choose difficulty (1-3): ")
+        difficulty = input("Invalid choice. Choose difficulty (1-4): ")
     if difficulty == "4":
         input("Press enter to return to the menu: ")
         menu()
@@ -67,23 +67,23 @@ def play_roulette():
                 break
 
 
-def play_number():
-    guessed = []
+def play_number(): 
     """Play number game."""
+    guessed = []
     number_difficulties = {
         "1": ("Easy", 5),
         "2": ("Normal", 10),
-        "3": ("Quit", 0 ),
+        "3": ("Quit", 0),
     }
     print("Welcome to a number guessing game!")
     print("Select difficulty: ")
     for keys, (name, nambers) in number_difficulties.items():
         print(f"{keys}. {name} ({nambers} total numbers)")
-    print("Choose difficulty (1-2)")
+    print("\nChoose difficulty (1-3)")
     print("Or enter 3 to return to the menu.")
-    number_difficulty = input("\nEnter input here: ")   
+    number_difficulty = input("\nEnter input here: ")
     while number_difficulty not in number_difficulties:
-        number_difficulty = input("Invalid choice. Choose difficulty (1-2): ")
+        number_difficulty = input("Invalid choice. Choose difficulty (1-3): ")
     if number_difficulty == "3":
         input("Press enter to return to the menu: ")
         menu()
@@ -116,12 +116,15 @@ def play_number():
                 print(numbers)
             number_players.append({"name": number_name, "score": current_wins, "difficulty": number_difficulty_name})
             guessed = []
-            number_again = input("Play again? (y/n): ").lower()
             current_wins = 0
+            number_again = input("Play again? (y/n): ").lower()
+            while number_again not in ("y", "n"):
+                number_again = input("Invalid input. Play again (y/n): ").lower()
             if number_again == "y":
+                clear_screen()
+                guessed = []
                 guesses = 0
                 number = random.randint(1, total_numbers)
-                continue
             else:
                 break
         print(f"Guesses used: {guesses}/3")
@@ -142,10 +145,6 @@ def play_number():
             print("Invalid input! Please enter a number.")
             input("Press enter to continue. ")
             continue
-        if guess < 1 or guess > total_numbers:
-            print(f"Please guess a number between 1 and {total_numbers}.")
-            input("Press enter to continue. ")
-            continue
         if guess == number:
             print("Correct!")
             print(f"The number was {number}")
@@ -155,6 +154,7 @@ def play_number():
             while number_again not in ("y", "n"):
                 number_again = input("Invalid input. Play again (y/n): ").lower()
             if number_again == "y":
+                clear_screen()
                 guessed = []
                 guesses = 0
                 number = random.randint(1, total_numbers)
@@ -171,8 +171,8 @@ def play_number():
 
 
 def play_cyoa():
-    cyoa_score = 0
     """Play CYOA game."""
+    cyoa_score = 0
     cyoa_name = input("Please enter your name: ")
     clear_screen()
     print("You have been tasked with recovering the golden idol.")
@@ -285,7 +285,8 @@ def menu():
 
 menu()
 
-# the puter has been dignosed, unfortunatley it is terminal
+
+# the puter has been dignosed, unfortunatley it is terminal :]
 
 #     if number_difficulty == "3":
 #         menu()
