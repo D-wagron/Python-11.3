@@ -16,5 +16,6 @@ Games include:
 
  All gamea are finished
 
- [![Open in GitHub Codespaces](https://github.com/D-wagron/Python-11.3)](https://codespaces.new)
+ [![Open in GitHub Codespaces](https://github.com/D-wagron/Python-11.3)](https://codespaces.new/D-wagron/Python-11.3)
+
  
