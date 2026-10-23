@@ -12,4 +12,6 @@ Games include:
 
  Each of these games give the user a score, and tracks these scores in the highscore section of the menu.
 
- (Russian) Roulette is finished, while Number guesser and CYOA are minimum viable products (for now)
+ From the first page of each game menu, you have the option to return to the menu. (Excluding CYOA fro now)
+
+ (Russian) Roulette, and Number guesser is finished, while CYOA is a minimum viable product (for now)

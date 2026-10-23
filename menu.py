@@ -21,6 +21,7 @@ def play_roulette():
         "1": ("Easy", 8),
         "2": ("Normal", 6),
         "3": ("Hard", 4),
+        "4": ("Quit", 0)
     }
     print("Welcome to a less dangerous version of Russian roulette")
     print("\nSelect difficulty:")
@@ -30,9 +31,15 @@ def play_roulette():
     print("Easy: High")
     print("Normal: Enough")
     print("Hard: Low")
-    difficulty = input("\nChoose difficulty (1-3): ")
+    print("\nChoose difficulty (1-3):")
+    print("Or enter 4 to quit")
+    difficulty = input("\nEnter input here: ")
     while difficulty not in roulette_difficulties:
         difficulty = input("Invalid choice. Choose difficulty (1-3): ")
+    if difficulty == "4":
+        input("Press enter to return to the menu: ")
+        menu()
+        return
     difficulty_name, chamber_count = roulette_difficulties[difficulty]
     print(f"\nDifficulty set to {difficulty_name}!")
     print("Welcome to a less dangerous version of Russian roulette")
@@ -66,14 +73,21 @@ def play_number():
     number_difficulties = {
         "1": ("Easy", 5),
         "2": ("Normal", 10),
+        "3": ("Quit", 0 ),
     }
     print("Welcome to a number guessing game!")
     print("Select difficulty: ")
     for keys, (name, nambers) in number_difficulties.items():
         print(f"{keys}. {name} ({nambers} total numbers)")
-    number_difficulty = input("\nChoose difficulty (1-2): ")
+    print("Choose difficulty (1-2)")
+    print("Or enter 3 to return to the menu.")
+    number_difficulty = input("\nEnter input here: ")   
     while number_difficulty not in number_difficulties:
         number_difficulty = input("Invalid choice. Choose difficulty (1-2): ")
+    if number_difficulty == "3":
+        input("Press enter to return to the menu: ")
+        menu()
+        return
     number_difficulty_name, total_numbers = number_difficulties[number_difficulty]
     print(f"\nDifficulty set to {number_difficulty_name}!")
     input("Press enter to continue: ")
@@ -211,21 +225,21 @@ def all_scores():
         input("Press enter to return to the menu: ")
     else:
         if roulette_players:
-            print("======== Roulette High Scores: ========")
+            print("\n======== Roulette High Scores: ========")
             sorted_roulette = sorted(roulette_players, key=lambda x: x["score"], reverse=True)
             for name in sorted_roulette:
                 print(f"Name: {name['name']} - Score: {name['score']} - Difficulty: {name['difficulty']}")
         if not roulette_players:
             print("No recorded scores yet for Roulette, go play!")
         if number_players:
-            print("===== Number Guesser High Scores: =====")
+            print("\n===== Number Guesser High Scores: =====")
             sorted_number = sorted(number_players, key=lambda x: x["score"], reverse=True)
             for name in sorted_number:
                 print(f"Name: {name['name']} - Score: {name['score']} - Difficulty: {name['difficulty']}")
         if not number_players:
             print("\nNo recorded scores yet for Number Guesser, go play!")
         if cyoa_players:
-            print("== Choose Your Own Adventure Scores: ==")
+            print("\n== Choose Your Own Adventure Scores: ==")
             sorted_cyoa = sorted(cyoa_players, key=lambda x: x["score"], reverse=True)
             for name in sorted_cyoa:
                 print(f"Name: {name['name']} - Score: {name['score']}")
@@ -235,37 +249,45 @@ def all_scores():
         input("Press enter to return to the menu: ")
 
 
-while True:
-    try:
-        clear_screen()
-        print("-=-=-=-=-=-=-=-=-=-=-=-=-")
-        print("          Games          ")
-        print("-=-=-=-=-=-=-=-=-=-=-=-=-")
-        print("1. Russian Roulette")
-        print("2. Number Game")
-        print("3. Choose Your Own Adventure")
-        print("4. High Scores")
-        print("5. Exit")
-        start = int(input("\nEnter your choice (1-5): "))
-        if start == 1:
+def menu():
+    while True:
+        try:
             clear_screen()
-            play_roulette()
-        elif start == 2:
-            clear_screen()
-            play_number()
-        elif start == 3:
-            clear_screen()
-            play_cyoa()
-        elif start == 4:
-            all_scores()
-        elif start == 5:
-            break
-        elif start < 1 or start > 5:
-            input("Please enter a number 1-5. Press enter to try again.")
-        else:
-            input("Invalid choice. Press enter to try again. ")
-    except ValueError:
-        input("Invalid input. Please only enter a number. Press enter to continue. ")
+            print("-=-=-=-=-=-=-=-=-=-=-=-=-")
+            print("          Games          ")
+            print("-=-=-=-=-=-=-=-=-=-=-=-=-")
+            print("1. Russian Roulette")
+            print("2. Number Game")
+            print("3. Choose Your Own Adventure")
+            print("4. High Scores")
+            print("5. Exit")
+            start = int(input("\nEnter your choice (1-5): "))
+            if start == 1:
+                clear_screen()
+                play_roulette()
+            elif start == 2:
+                clear_screen()
+                play_number()
+            elif start == 3:
+                clear_screen()
+                play_cyoa()
+            elif start == 4:
+                all_scores()
+            elif start == 5:
+                break
+            elif start < 1 or start > 5:
+                input("Please enter a number 1-5. Press enter to try again.")
+            else:
+                input("Invalid choice. Press enter to try again. ")
+        except ValueError:
+            input("Invalid input. Please only enter a number. Press enter to continue. ")
 
+
+menu()
 
 # the puter has been dignosed, unfortunatley it is terminal
+
+#     if number_difficulty == "3":
+#         menu()
+#         return
+
