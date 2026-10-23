@@ -183,9 +183,15 @@ def cyoa_play_again():
 
 def play_cyoa():
     """Play CYOA game."""
+    clear_screen()
     global cyoa_score
     global cyoa_name
     cyoa_score = 0
+    make_sure = input("Input 0 to return to the menu if you wish to return, else leave empty: ")
+    if make_sure == "0":
+        menu()
+        return
+    clear_screen()
     cyoa_name = input("Please enter your name: ")
     clear_screen()
     print("You have been tasked with recovering the golden idol.")
@@ -246,6 +252,7 @@ def play_cyoa():
                 print("It is a lot darker this side, but your eyes adjust.")
                 print("You find yourself standing in front of rusted barred cells, weapons strewn on the floor.")
                 print("Any bodies that were here, are now long gone.")
+                input("Press enter to continue: ")
                 play_cyoa_II()
 
         else: # pathway 3
@@ -291,6 +298,7 @@ def play_cyoa():
                 print("Your eyes adjust after a moment, barred cages line the walls, weapons of guards lie on the ground.")
                 print("Any bodies that were here, are now long gone.")
                 print("You find yourself in the dungeon.")
+                input("Press enter to continue: ")
                 play_cyoa_II()
     else:
         clear_screen()  # Pathway 1
@@ -313,6 +321,7 @@ def play_cyoa():
             print("You run through, before you collaps to the floor, catching your precious breath.")
             print("In front of you lies the rusted remains of the feared dungeon of Loter Castle.")
             print("No one knows why it was feared, but nobody survived their capture.")
+            input("Press enter to continue: ")
             play_cyoa_II()
         else:
             clear_screen()
