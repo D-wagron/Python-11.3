@@ -14,7 +14,7 @@ Games include:
 
  From the first page of each game menu, you have the option to return to the menu.
 
- All gamea are finished
+ All games are finished
 
  [![Open in GitHub Codespaces](https://github.com/D-wagron/Python-11.3)](https://codespaces.new/D-wagron/Python-11.3)
 
