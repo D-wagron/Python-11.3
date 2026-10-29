@@ -1,18 +1,23 @@
 """Digitech asessment."""
 
+# Imports requirements for random function, and clear screen function
 import os
 import random
 
+
+# Dictionaries for previous player of those games
 roulette_players = []
 number_players = []
 cyoa_players = []
 
 
+# Function for clearing the screen
 def clear_screen():
     """Clear the screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+# Function that calls on the roulette game to play
 def play_roulette():
     """Play roulette game."""
     wins = 0
@@ -67,7 +72,8 @@ def play_roulette():
                 break
 
 
-def play_number(): 
+# Function that calls the guess the number game
+def play_number():
     """Play number game."""
     guessed = []
     number_difficulties = {
@@ -170,7 +176,9 @@ def play_number():
             input("Press enter to continue. ")
 
 
+# Function for repeated lines of code to playa gain after you have finishe/died
 def cyoa_play_again():
+    """Ask if user wants to play cyoa agin"""
     cyoa_play_again = input("Play again (y/n)?").lower()
     while cyoa_play_again not in ("y", "n"):
         print("Invalid input. Try again.")
@@ -181,6 +189,7 @@ def cyoa_play_again():
         input("Press enter to return to the menu: ")
 
 
+# Function that calls the cyoa game to start
 def play_cyoa():
     """Play CYOA game."""
     clear_screen()
@@ -213,19 +222,19 @@ def play_cyoa():
     while first not in ("l", "r"):
         print("Invalid input. Try again")
         first = input("Enter input here: ").lower()
-    if first == "l": # Pathway 2
+    if first == "l":  # Pathway 2
         clear_screen()
         cyoa_score += 1
         print("You find youself inside of ")
         print("It seems a little bit drafty.")
         print("Do you try investigate, or find a way out of the vicious cold?")
         print("'I' for investigation, 'L' look for a way ot of the cold")
-        pathway_six = input("Enter input here: ").lower() # Third option
+        pathway_six = input("Enter input here: ").lower()  # Third option
         while pathway_six not in ("i", "l"):
             print("Invalid input. Try again")
             pathway_six = input("Enter input here: ").lower()
         if pathway_six == "i":
-            clear_screen()  
+            clear_screen()
             cyoa_score += 1
             print("You come face to face with a gaping hole.")
             print("It might not be that far down to the bottom.")
@@ -235,7 +244,7 @@ def play_cyoa():
             while death_pit not in ("l", "j"):
                 print("Invalid input. Try again")
                 death_pit = input("Enter input here: ").lower()
-            if death_pit == "l": # Pit Death
+            if death_pit == "l":  # Pit Death
                 clear_screen()
                 cyoa_score += 1
                 print("As you investigate the hole, a strong gust of wind blows you off balance.")
@@ -255,7 +264,7 @@ def play_cyoa():
                 input("Press enter to continue: ")
                 play_cyoa_II()
 
-        else: # pathway 3
+        else:  # pathway 3
             clear_screen()
             cyoa_score += 1
             print("After a bit of wandering, you notice a large wooden staircase in front of you.")
@@ -266,7 +275,7 @@ def play_cyoa():
             while option_four not in ("u", "d"):
                 print("Invalid input. Try again.")
                 option_four = input("Enter input here: ").lower()
-            if option_four == "u": # Pathway 7 Tower Death
+            if option_four == "u":  # Pathway 7 Tower Death
                 clear_screen()
                 cyoa_score += 1
                 print("You find yourself at the top of a tower.")
@@ -336,7 +345,9 @@ def play_cyoa():
             cyoa_play_again()
 
 
+# Function that plays the second part of the cyoa game
 def play_cyoa_II():
+    """Plays part II of the cyoa game"""
     clear_screen()
     global cyoa_name
     global cyoa_score
@@ -377,7 +388,7 @@ def play_cyoa_II():
             print(f"Final score: {cyoa_score}")
             cyoa_players.append({"name": cyoa_name, "score": cyoa_score})
             cyoa_play_again()
-        else: 
+        else:
             clear_screen()
             cyoa_score += 1
             print("The same enticing blue lights the end of the corridor, and you find yourself staring.")
@@ -424,7 +435,9 @@ def play_cyoa_II():
             play_cyoa_III()
 
 
+# Function that plays the last part of the cyoa game
 def play_cyoa_III():
+    """Plays part III of the cyoa game"""
     clear_screen()
     global cyoa_name
     global cyoa_score
@@ -481,14 +494,15 @@ def play_cyoa_III():
         print("You sit down in the rain wondering if yor choices were truly yours to make.")
         print("'Well done, test subject, you passed.'")
         print("Your eyes open wide, you look around before you are quickly sedated.")
-        print("'\x1B[3mWas it you who really chose?\x1B[23m'") #italics work for terinal, no idea for anything else
+        print("'\x1B[3mWas it you who really chose?\x1B[23m'")  # italics work for terinal, no idea for anything else
         print("\n ")
-        cyoa_score += 5 # winning bonus
+        cyoa_score += 5  # winning bonus
         cyoa_players.append({"name": cyoa_name, "score": cyoa_score})
         print(f"Final score: {cyoa_score}")
         cyoa_play_again()
 
 
+# Function that sorts all the scores int he dictionaries for the leaderboard menu
 def all_scores():
     """Highscore function"""
     clear_screen()
@@ -521,7 +535,9 @@ def all_scores():
         input("Press enter to return to the menu: ")
 
 
+# Function that calls the menu 
 def menu():
+    """Calls the menu"""
     while True:
         try:
             clear_screen()
@@ -559,4 +575,3 @@ menu()
 
 
 # the puter has been dignosed, unfortunatley it is terminal :]
-
