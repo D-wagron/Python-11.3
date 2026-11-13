@@ -6,7 +6,7 @@ A collection of games that run in the terminal
 
 ### Option 1: (Linux executable)
     
-[Donload the Linux Binary from here](https://github.com/D-wagron/Python-11.3/releases/tag/v1.1.0)
+[Donload the Linux Binary from here](https://github.com/D-wagron/Python-11.3/releases/tag/v1.1.1)
 
 For windows:
 1. Download menu.py from [here](https://github.com/D-wagron/Python-11.3)
@@ -35,6 +35,6 @@ Or
 
  All games are finished
 
- [Try the project here](https://github.com/D-wagron/Python-11.3/releases/tag/v1.1.0)
+ [Try the project here](https://github.com/D-wagron/Python-11.3/releases/tag/v1.1.1)
 
  
