@@ -1,4 +1,4 @@
-"""Digitech asessment."""
+"""terminal games"""
 
 # Imports requirements for random function, and clear screen function
 import os
